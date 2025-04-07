@@ -1,0 +1,14 @@
+if [ $# -eq 0 ]; then
+	printf " Usage: phone searchfor [… searchfor]\n(You didn’t tell me what you want to search for.)\n"
+elif [ $# -ge 3 ]; then
+	printf " Too many argument\n"
+else
+	temp=""
+	for argn in  "$@"
+	do
+	temp="${temp}${argn}|"
+	done
+	temp=${temp%|} 
+	egrep -i "$temp"  mydata.txt | awk -f display.awk		 
+fi
+
